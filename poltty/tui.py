@@ -1,4 +1,4 @@
-"""Textual TUI for polltty configuration."""
+"""Textual TUI for poltty configuration."""
 
 from __future__ import annotations
 
@@ -227,10 +227,10 @@ Screen {
 """
 
 
-class PollttyConfigApp(App):
-    """Interactive configuration TUI for polltty."""
+class PolttyConfigApp(App):
+    """Interactive configuration TUI for poltty."""
 
-    TITLE = "polltty config"
+    TITLE = "poltty config"
     SUB_TITLE = "Configure Ghostty window layout"
     CSS = CSS
 
@@ -462,5 +462,5 @@ class PollttyConfigApp(App):
 
 def run_config_tui(initial_columns: list[int] | None = None) -> None:
     """Launch the interactive config TUI."""
-    app = PollttyConfigApp(initial_columns=initial_columns)
+    app = PolttyConfigApp(initial_columns=initial_columns)
     app.run()

@@ -1,4 +1,4 @@
-"""polltty — CLI entry point."""
+"""poltty — CLI entry point."""
 
 from __future__ import annotations
 
@@ -17,21 +17,21 @@ from . import config as cfg_store
 console = Console()
 
 HELP_TEXT = """
-[bold cyan]polltty[/bold cyan] — Ghostty terminal layout manager  (poltergeist + ghostty)
+[bold cyan]poltty[/bold cyan] — Ghostty terminal layout manager  (poltergeist + ghostty)
 
 [bold]USAGE[/bold]
-  polltty [COLUMN_SPEC...] [OPTIONS]
-  polltty config
-  polltty help
+  poltty [COLUMN_SPEC...] [OPTIONS]
+  poltty config
+  poltty help
 
 [bold]COLUMN SPEC[/bold]
   One to four integers (1–4), each representing the number of rows in that column.
 
-  [cyan]polltty 2 2[/cyan]       →  2×2 grid  (left: 2 panes / right: 2 panes)
-  [cyan]polltty 1 2[/cyan]       →  2 columns  (left: 1 pane / right: 2 panes stacked)
-  [cyan]polltty 1 2 2[/cyan]     →  3 columns  (1 / 2 / 2)
-  [cyan]polltty 1 2 2 1[/cyan]   →  4 columns  (1 / 2 / 2 / 1)
-  [cyan]polltty 4 4 4 4[/cyan]   →  16 panes   (4×4 maximum)
+  [cyan]poltty 2 2[/cyan]       →  2×2 grid  (left: 2 panes / right: 2 panes)
+  [cyan]poltty 1 2[/cyan]       →  2 columns  (left: 1 pane / right: 2 panes stacked)
+  [cyan]poltty 1 2 2[/cyan]     →  3 columns  (1 / 2 / 2)
+  [cyan]poltty 1 2 2 1[/cyan]   →  4 columns  (1 / 2 / 2 / 1)
+  [cyan]poltty 4 4 4 4[/cyan]   →  16 panes   (4×4 maximum)
 
 [bold]SUBCOMMANDS[/bold]
   [cyan]config[/cyan]            Open the TUI to configure layout and per-pane commands.
@@ -52,7 +52,7 @@ HELP_TEXT = """
 
 
 def _print_help() -> None:
-    console.print(Panel(HELP_TEXT.strip(), title="polltty help", border_style="cyan"))
+    console.print(Panel(HELP_TEXT.strip(), title="poltty help", border_style="cyan"))
 
 
 def _validate_columns(raw: tuple[str, ...]) -> list[int]:
@@ -93,22 +93,22 @@ def main(
     dry_run: bool,
     version: bool,
 ) -> None:
-    """polltty — Ghostty terminal layout manager.
+    """poltty — Ghostty terminal layout manager.
 
     Pass one to four integers (1-4) as COLUMN_SPEC, each representing
     the number of rows in that column.  Use 'config' to open the TUI.
 
     \b
     Examples:
-      polltty 2 2        2x2 grid
-      polltty 1 2        left:1 pane / right:2 panes
-      polltty 1 2 2      3 columns
-      polltty config     open interactive TUI
-      polltty --restore  re-apply last saved layout
+      poltty 2 2        2x2 grid
+      poltty 1 2        left:1 pane / right:2 panes
+      poltty 1 2 2      3 columns
+      poltty config     open interactive TUI
+      poltty --restore  re-apply last saved layout
     """
 
     if version:
-        console.print(f"polltty {__version__}")
+        console.print(f"poltty {__version__}")
         return
 
     if not args and not restore:
@@ -137,7 +137,7 @@ def main(
         if not layout:
             console.print(
                 "[yellow]No saved layout found.[/yellow] "
-                "Run [cyan]polltty config[/cyan] to create one."
+                "Run [cyan]poltty config[/cyan] to create one."
             )
             sys.exit(1)
         columns = layout["columns"]

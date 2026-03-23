@@ -1,10 +1,10 @@
-"""Configuration persistence for polltty."""
+"""Configuration persistence for poltty."""
 
 import json
 from pathlib import Path
 from typing import Optional
 
-CONFIG_DIR = Path.home() / ".polltty"
+CONFIG_DIR = Path.home() / ".poltty"
 CONFIG_FILE = CONFIG_DIR / "config.json"
 
 _DEFAULT: dict = {

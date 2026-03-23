@@ -1,11 +1,11 @@
-# polltty
+# poltty
 
 > **pol**tergeist + ghos**tty** — a one-liner terminal layout manager for [Ghostty](https://ghostty.org).
 
-`polltty` splits your Ghostty window into a custom grid of panes via AppleScript — instantly, from the command line.
+`poltty` splits your Ghostty window into a custom grid of panes via AppleScript — instantly, from the command line.
 
 ```
-polltty 1 2 2
+poltty 1 2 2
 ```
 
 ↑ Opens 3 columns: the left has 1 pane, the middle 2 stacked, the right 2 stacked — all in one shot.
@@ -28,18 +28,18 @@ To verify: `ghostty --version`.
 ## Installation
 
 ```bash
-pip install git+https://github.com/canly/ghostty-multi-window-kit.git
+pip install git+https://github.com/motsuo373/poltty.git
 ```
 
 Or clone and install in editable mode for development:
 
 ```bash
-git clone https://github.com/canly/ghostty-multi-window-kit.git
-cd ghostty-multi-window-kit
+git clone https://github.com/motsuo373/poltty.git
+cd poltty
 pip install -e .
 ```
 
-After installation the `polltty` command is available in your `$PATH`.
+After installation the `poltty` command is available in your `$PATH`.
 
 ---
 
@@ -48,36 +48,36 @@ After installation the `polltty` command is available in your `$PATH`.
 ### Split syntax
 
 ```
-polltty <col1_rows> [<col2_rows> [<col3_rows> [<col4_rows>]]]
+poltty <col1_rows> [<col2_rows> [<col3_rows> [<col4_rows>]]]
 ```
 
 Each argument is an integer **1–4** representing the number of vertical panes in that column.
 Maximum **4 columns**, maximum **4 rows per column** (16 panes total).
 
 ```bash
-polltty 2 2        # 2×2 grid
-polltty 1 2        # left: 1 pane  |  right: 2 panes (stacked)
-polltty 1 2 2      # 3 columns: 1 / 2 / 2 rows
-polltty 1 2 2 1    # 4 columns: 1 / 2 / 2 / 1 rows
-polltty 4 4 4 4    # 4×4 = 16 panes (maximum)
+poltty 2 2        # 2×2 grid
+poltty 1 2        # left: 1 pane  |  right: 2 panes (stacked)
+poltty 1 2 2      # 3 columns: 1 / 2 / 2 rows
+poltty 1 2 2 1    # 4 columns: 1 / 2 / 2 / 1 rows
+poltty 4 4 4 4    # 4×4 = 16 panes (maximum)
 ```
 
 ### Subcommands
 
 | Command | Description |
 |---|---|
-| `polltty help` | Show the help message |
-| `polltty config` | Open the interactive TUI to set layout and per-pane commands |
-| `polltty --restore` | Re-apply the last saved layout (with its commands) |
-| `polltty --dry-run <spec>` | Print the generated AppleScript without executing it |
-| `polltty --version` | Show the version number |
+| `poltty help` | Show the help message |
+| `poltty config` | Open the interactive TUI to set layout and per-pane commands |
+| `poltty --restore` | Re-apply the last saved layout (with its commands) |
+| `poltty --dry-run <spec>` | Print the generated AppleScript without executing it |
+| `poltty --version` | Show the version number |
 
 ---
 
 ## Interactive config TUI
 
 ```bash
-polltty config
+poltty config
 ```
 
 Opens a full-screen TUI where you can:
@@ -100,11 +100,11 @@ Opens a full-screen TUI where you can:
 
 ## Restoring the last layout
 
-Every successful `polltty <spec>` or TUI-applied layout is auto-saved.
+Every successful `poltty <spec>` or TUI-applied layout is auto-saved.
 Bring it back with:
 
 ```bash
-polltty --restore
+poltty --restore
 ```
 
 This recreates the same grid and re-runs the saved per-pane commands.
@@ -113,7 +113,7 @@ This recreates the same grid and re-runs the saved per-pane commands.
 
 ## Per-pane commands
 
-Use `polltty config` to assign a shell command to any pane.
+Use `poltty config` to assign a shell command to any pane.
 For example:
 
 | Pane | Command |
@@ -122,13 +122,13 @@ For example:
 | C2R1 | `cd ~/project && npm run dev` |
 | C2R2 | `cd ~/project && npm test -- --watch` |
 
-After saving, `polltty --restore` recreates the layout **and** runs each command.
+After saving, `poltty --restore` recreates the layout **and** runs each command.
 
 ---
 
 ## How it works
 
-`polltty` generates an AppleScript that calls the Ghostty scripting API
+`poltty` generates an AppleScript that calls the Ghostty scripting API
 (introduced in Ghostty 1.3.0):
 
 ```applescript
@@ -143,7 +143,7 @@ end tell
 ```
 
 The script is executed via `osascript` and targets the **front Ghostty window**.
-Run `polltty` from inside Ghostty for best results.
+Run `poltty` from inside Ghostty for best results.
 
 > **Note:** Column widths are divided 50/50 at each split step.
 > For three or more columns the proportions become unequal (50 / 25 / 25 %).
@@ -153,7 +153,7 @@ Run `polltty` from inside Ghostty for best results.
 
 ## Configuration file
 
-Settings are stored at `~/.polltty/config.json`:
+Settings are stored at `~/.poltty/config.json`:
 
 ```json
 {

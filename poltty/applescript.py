@@ -56,8 +56,7 @@ def generate_layout_script(
 
     # ── Create additional columns ──────────────────────────────────────────
     # Each new column is created by splitting the previous column's top terminal to the right.
-    # This means column widths are progressively halved (50 / 25 / 12.5 %),
-    # which is the default Ghostty split behaviour; users can resize manually.
+    # After all splits are created, equalize_splits is called to distribute widths evenly.
     for i in range(1, num_cols):
         var = new_var()
         col_tops.append(var)
@@ -72,6 +71,9 @@ def generate_layout_script(
             all_terminals[col_idx][row_idx] = var
             lines.append(f"    set {var} to split {prev_var} direction down")
             prev_var = var
+
+    # ── Equalize split sizes ───────────────────────────────────────────────
+    lines.append('    perform action "equalize_splits" on t1')
 
     # ── Send initial commands ──────────────────────────────────────────────
     if commands:

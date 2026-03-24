@@ -46,7 +46,7 @@ HELP_TEXT = """
 [bold]NOTES[/bold]
   • Requires Ghostty ≥ 1.3.0 with AppleScript support enabled (default).
   • Run from within Ghostty — the front window is used as the target.
-  • Column widths are split 50/50 at each division; resize panes manually if needed.
+  • Column widths are equalized automatically after layout is applied.
   • Layout + commands are auto-saved after each successful apply.
 """
 

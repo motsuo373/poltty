@@ -145,9 +145,7 @@ end tell
 The script is executed via `osascript` and targets the **front Ghostty window**.
 Run `poltty` from inside Ghostty for best results.
 
-> **Note:** Column widths are divided 50/50 at each split step.
-> For three or more columns the proportions become unequal (50 / 25 / 25 %).
-> Resize panes manually by dragging the dividers.
+> **Note:** After all splits are created, `equalize_splits` is called automatically to distribute column widths evenly.
 
 ---
 
